@@ -9,11 +9,33 @@ import (
 )
 
 type Hello struct {
-	i int
+	N int
 	f float32
 }
 
+func test1(mod interface{}, v int) interface{} {
+	modType := reflect.TypeOf(mod).Elem()
+	fmt.Println(modType)
+	dst := reflect.New(modType).Interface()
+	fmt.Println(dst)
+	return dst
+}
+
+func test2() {
+	type t struct {
+		N int
+		s string
+	}
+	n := t{42, "hello"}
+	fmt.Println("before", n)
+	rv := reflect.ValueOf(&n).Elem()
+	rv.FieldByName("N").SetInt(7)
+	fmt.Println("after", n)
+}
 func main() {
+	test2()
+	a := test1(&Hello{}, 2)
+	fmt.Println(a)
 	var i interface{}
 	hello := Hello{1, 2.0}
 	i = hello
@@ -36,11 +58,13 @@ func main() {
 	if rv.CanSet() {
 		fmt.Println("hello can set")
 	}
-	rv = reflect.ValueOf(&hello)
-	if rv.CanSet() {
-		fmt.Println("before set", rv, hello)
-		rv.Elem().FieldByName("i").SetInt(5)
-		fmt.Println("end    set", rv, hello)
+
+	rvx := reflect.ValueOf(&hello).Elem()
+	// reflect.ValueOf(&hello).Elem().FieldByName("i").SetInt(7)
+	if rvx.CanSet() {
+		fmt.Println("before set", rvx, hello)
+		rvx.FieldByName("N").SetInt(5)
+		fmt.Println("end    set", rvx, hello)
 	}
 	test()
 }

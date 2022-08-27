@@ -12,6 +12,11 @@ type Student struct {
 	addr   string
 }
 
+type Deng struct {
+	s    Student
+	flag bool
+}
+
 func (s Student) String() string {
 	return fmt.Sprintf("id\t:%d\nname\t:%s\n", s.id, s.name)
 }
@@ -46,7 +51,7 @@ func main() {
 	p2.name = "he"
 	fmt.Println(p2)
 
-	//比较 和赋值
+	//比较 和赋值 如果结构体的全部成员都是可以比较的，那么结构体也是可以比较的
 	s3 := s1
 	fmt.Println(s3)
 	fmt.Println(s3 == s1)
@@ -54,4 +59,12 @@ func main() {
 
 	s2 = s3
 	fmt.Println(s2 == s3)
+
+	d1 := Deng{s1, false}
+	d2 := Deng{s1, true}
+	fmt.Println("deng", d1 == d2)
+	d2.flag = false
+	fmt.Println("deng", d1 == d2)
+	fmt.Println(d1, d2)
+
 }

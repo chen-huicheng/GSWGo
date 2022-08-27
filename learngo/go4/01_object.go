@@ -45,5 +45,43 @@ func test1() {
 
 }
 func main() {
-	test1()
+	// test1()
+	test2()
+}
+
+type Point struct {
+	X, Y int
+}
+
+type Circle struct {
+	Point
+	Radius int
+}
+
+type Wheel struct {
+	Circle
+	Spokes int
+}
+
+func (p Point) DisplayPoint() {
+	fmt.Printf("Point(X:%d,Y:%d)\n", p.X, p.Y)
+}
+func (c Circle) DisplayCircle() {
+	fmt.Printf("Circle(X:%d,Y:%d,Radius:%d)\n", c.X, c.Y, c.Radius)
+}
+
+func (p *Point) SetPoint(x, y int) {
+	p.X, p.Y = x, y
+}
+func test2() {
+	p := Point{1, 2}
+	// p.DisplayPoint()
+	cir := Circle{p, 3}
+	cir.DisplayPoint()
+	cir.SetPoint(2, 3)
+	cir.DisplayPoint()
+
+	wh := Wheel{cir, 3}
+	wh.DisplayCircle()
+	wh.DisplayPoint()
 }

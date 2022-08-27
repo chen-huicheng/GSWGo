@@ -13,6 +13,8 @@ func main() {
 
 	s := arr[0:3]
 	fmt.Println("s = ", s)
+	// s[3] = 2
+	// fmt.Println("arr = ", arr)
 	fmt.Println("len(s) = ", len(s))
 	fmt.Println("cap(s) = ", cap(s))
 
@@ -95,6 +97,9 @@ func main() {
 	InitData(sortS)
 	sort(sortS)
 	fmt.Println(sortS)
+	modifySlice(sortS)
+	fmt.Println(sortS)
+
 }
 func InitData(s []int) { //切片作为参数传递的是引用
 	rand.Seed(time.Now().UnixNano())
@@ -119,4 +124,10 @@ func sort(s []int) {
 		}
 	}
 	// fmt.Println("arr = ", arr)
+}
+
+func modifySlice(s []int) {
+	fmt.Println(s)
+	s = append(s, 2048)
+	s[0] = 1024
 }
