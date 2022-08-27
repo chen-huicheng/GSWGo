@@ -16,3 +16,4 @@
 *.toml
 go2/09_project2/pkg/*
 .vscode
+*/output/*
