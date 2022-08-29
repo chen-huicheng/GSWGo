@@ -15,4 +15,7 @@ func main() {
 	fmt.Println(arr)
 	stl.MySort(arr)
 	fmt.Println(arr)
+	fmt.Println("hello main")
+	fmt.Println("hello GSWGO")
+	fmt.Println("fix bug")
 }
