@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	fmt.Println("learning gorm!!!")
 	args := os.Args
 	if len(args) < 2 {
 		fmt.Printf("Usage:%s sql/gorm\n", args[0])
