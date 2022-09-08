@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"reflect"
 	"strconv"
 
@@ -39,7 +41,7 @@ func SetValue(rv reflect.Value, value string) error {
 	return nil
 
 }
-func InitMod(mod interface{}) error {
+func InitValue(mod interface{}) error {
 	fmt.Println(reflect.TypeOf(mod), reflect.TypeOf(mod).Elem())
 	modType := reflect.TypeOf(mod).Elem()
 	nf := modType.NumField()
@@ -47,11 +49,13 @@ func InitMod(mod interface{}) error {
 	for i := 0; i < nf; i++ {
 		fmt.Println(modType.Field(i).Tag)
 		value := modType.Field(i).Tag.Get("init")
+		// modType.Name()
 		if value == "" {
+			log.Printf("InitMod: struct '%s' field '%s' not 'init' tag ", modType.Name(), modType.Field(i).Name)
 			continue
 		}
 		if value == "magicKey" {
-			InitMod(rv.Field(i).Addr().Interface())
+			InitValue(rv.Field(i).Addr().Interface())
 			continue
 		}
 		err := SetValue(rv.Field(i), value)
@@ -62,16 +66,25 @@ func InitMod(mod interface{}) error {
 	return nil
 	// rv := reflect.ValueOf(mod).Elem()
 }
-
+func InitLog() {
+	// 创建、追加、读写，777，所有权限
+	f, err := os.OpenFile("log.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
+	if err != nil {
+		return
+	}
+	log.SetOutput(f)
+	log.SetFlags(log.Llongfile | log.LstdFlags)
+}
 func main() {
+	InitLog()
 	user := stl.User{}
-	if err := InitMod(&user); err != nil {
+	if err := InitValue(&user); err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(user)
 
 	stu := stl.Student{}
-	if err := InitMod(&stu); err != nil {
+	if err := InitValue(&stu); err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println(stu)

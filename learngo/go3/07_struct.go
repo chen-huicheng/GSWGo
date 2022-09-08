@@ -6,10 +6,10 @@ type FuncType func(int, int) int
 
 type Student struct {
 	id     int
-	name   string
+	Name   string
 	gender byte
 	age    int
-	addr   string
+	Addr   string
 }
 
 type Deng struct {
@@ -17,15 +17,15 @@ type Deng struct {
 	flag bool
 }
 
-func (s Student) String() string {
-	return fmt.Sprintf("id\t:%d\nname\t:%s\n", s.id, s.name)
+func (s *Student) String() string {
+	return fmt.Sprintf("姓名:\t%s\n地址:\t%s", s.Name, s.Addr)
 }
 
 func main() {
-	var s1 Student = Student{1, "chen", 0, 25, "sy"}
+	s1 := Student{1, "zhang", 0, 25, "beijing"}
 	fmt.Println(s1)
 
-	s2 := Student{id: 2, name: "wang"}
+	s2 := Student{id: 2, Name: "wang"}
 	fmt.Println(s2)
 
 	var p *Student
@@ -35,20 +35,20 @@ func main() {
 	//成员使用
 	s := Student{}
 	s.id = 3
-	s.name = "me"
-	fmt.Println(s.name)
+	s.Name = "me"
+	fmt.Println(s.Name)
 
 	//指针
 
 	p.id = 3
 	// (*p).name = "cheng"
-	p.name = "cheng" //与上一行等价
+	p.Name = "cheng" //与上一行等价
 	fmt.Println(*p)  //输出 ‘{内容}’
 	fmt.Println(p)   //输出 ’&{内容}‘
 
 	p2 := new(Student) //p2是一个指针
 	p2.id = 4
-	p2.name = "he"
+	p2.Name = "he"
 	fmt.Println(p2)
 
 	//比较 和赋值 如果结构体的全部成员都是可以比较的，那么结构体也是可以比较的

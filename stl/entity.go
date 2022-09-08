@@ -2,7 +2,7 @@ package stl
 
 type User struct {
 	Name   string `init:"john"`
-	Age    int    `init:"18"`
+	Age    int    `ini1t:"18"`
 	Gender uint8  `init:"1"`
 }
 

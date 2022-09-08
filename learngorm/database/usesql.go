@@ -79,6 +79,10 @@ func (dao *Dao) Select(users *[]entity.User) error {
 
 func (dao *Dao) Save(users []entity.User) error {
 
+	// dao.DB.ExecContext()
+	// dao.DB.PrepareContext()
+	// dao.DB.QueryContext()
+	// dao.DB.QueryRowContext()
 	for _, user := range users {
 		sql := fmt.Sprintf("insert into user(name,birthday) VALUES('%s','%s')", user.Name, user.Birthday)
 		_, err := dao.DB.Exec(sql)

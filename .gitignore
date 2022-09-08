@@ -17,3 +17,5 @@
 go2/09_project2/pkg/*
 .vscode
 */output/*
+.DS_Store
+log.log
