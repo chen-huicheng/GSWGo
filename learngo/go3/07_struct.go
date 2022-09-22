@@ -22,6 +22,8 @@ func (s *Student) String() string {
 }
 
 func main() {
+	var s11 Student
+	s11.age = 10
 	s1 := Student{1, "zhang", 0, 25, "beijing"}
 	fmt.Println(s1)
 

@@ -1,4 +1,4 @@
-module github.com/chen-huicheng/GSWGo/wire
+module wire
 
 go 1.18
 
