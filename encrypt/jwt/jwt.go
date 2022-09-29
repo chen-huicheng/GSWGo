@@ -10,9 +10,10 @@ import (
 )
 
 type User struct {
-	Name     string
-	Age      int
-	Password string
+	Name string
+	// Age      int
+	// Password string
+	Data map[string]interface{}
 }
 
 // type ISecretFunc interface {
@@ -60,13 +61,14 @@ func AuthToken(tokenString string) (*UserClaims, error) {
 	return &claims, nil
 }
 func main() {
-	user := User{Name: "chen", Age: 25, Password: "matrix"}
-	token, err := GenerateToken(user, time.Hour*24*7)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(token)
+	// user := User{Name: "chen", Age: 25, Password: "matrix"}
+	// token, err := GenerateToken(user, time.Hour*24*7)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Println(token)
+	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VyVHlwZSI6MSwiVXNlcklEIjowLCJBY2NvdW50IjoiMTMyMTM4MDIzNzMiLCJVc2VyTmFtZSI6IkljaGVuZyIsIk1vYmlsZSI6IiIsIlNsYXQiOiIyMzczIiwiT3JnS2V5IjoiZGV2LW9yZyIsImV4cCI6MTY2NTEyNzM4NywiaXNzIjoic3BlY2RpcyJ9.A5AsVCSTmLM-Qe8DkOKJwSY1WZ4ojhCKL9rB0KX3NdA"
 	userClaims, err := AuthToken(token)
 	if err != nil {
 		log.Fatalln(err)
