@@ -33,5 +33,5 @@ func (dao *GormDao) GormSave(users []entity.User) error {
 	return nil
 }
 func RunGorm() {
-
+	NewGormDao()
 }

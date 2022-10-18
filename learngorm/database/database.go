@@ -21,6 +21,7 @@ func InitDB(addr, dbname, user, passwd string) (*gorm.DB, error) {
 	}
 	// Get a database handle.
 	var err error
+	fmt.Println("dsn", cfg.FormatDSN())
 	gormdb, err = gorm.Open(gmysql.Open(cfg.FormatDSN()), &gorm.Config{})
 	if err != nil {
 		return nil, err
