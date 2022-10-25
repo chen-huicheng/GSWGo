@@ -19,3 +19,4 @@ go2/09_project2/pkg/*
 */output/*
 .DS_Store
 *.log
+*/output
