@@ -18,6 +18,9 @@ func printB(n int64) {
 }
 func main() {
 	fmt.Println(IdGen())
-	fmt.Printf("%d\n", int64(-1))
-	fmt.Printf("%b\n", int64(-21))
+	fmt.Printf("%d\n", int64(84736))
+	fmt.Printf("%b\n", int64(85248))
+	fmt.Printf("%b\n", int64(89856))
+	fmt.Printf("%b\n", int64(187136))
+	fmt.Printf("%b\n", int64(618240))
 }
